@@ -61,6 +61,21 @@ Security service links are to their FAQ pages, as a useful source of information
     + [Common scenarios](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-scenarios.html)
     + Various soft limits e.g. API calls/s, groups/pool, etc. No limit on number of users.
 
+* [**Detective**](https://aws.amazon.com/detective/faqs/)
+    + Build-in data collection
+        + Automatically collects data from resources and uses ML, analysis, and graph theory to build data for security investigations
+        + Does not allow boundary crossing between accounts
+    + Automated analysis and Data insights
+        + retains data for a year and shows visualizations over a selected time window
+        + quickly analyze activity across all accounts within regions
+    + Pricing - based on ingested data from CloudTrail, VPC Flow Logs, and GuardDuty findings per/GB
+    + Needs to be enabled region-by-region
+    + Capabilities
+        + alert triage
+        + incident investigation
+        + threat hunting
+        + security behavior graph (relationships)
+
 * [**Directory Service**](https://aws.amazon.com/directoryservice/faqs/)
     + Works with EC2 (manage them via group policies), RDS SQL server, WorkSpaces, AWS SSO, and a few more obscure ones
     + Can assign IAM roles to AD users for AWS access
