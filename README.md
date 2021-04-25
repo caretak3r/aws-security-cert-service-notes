@@ -8,9 +8,7 @@ I don't plan to actively maintain this document as AWS evolves - reader beware, 
 Final caveat: this doesn't teach you how to be good at AWS security. See my blog post on [what I think the Security Speciality certification means](https://mykter.com/2019/05/04/aws-security-certification), and hence what this document aims to cover.
 
 If you found this useful please [let me know](https://twitter.com/michael_macnair)!
-
-<br><br>
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">AWS Service Security Notes</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/mykter/aws-security-cert-service-notes" rel="dct:source">https://github.com/mykter/aws-security-cert-service-notes</a>.
+---
 
 # Services
 A complete list of the AWS security services, and selected additional AWS services of relevance to security (in particular, the security specialist certification). Taken from the [AWS product list](https://aws.amazon.com/products/) as of March 2019; if a category isn't listed it's because I thought none of the services in that category are particularly applicable.
@@ -227,17 +225,25 @@ Security service links are to their FAQ pages, as a useful source of information
         + AES-256
         + CMKs are stored in HSMs (140-2 level 2)
         + AWS managed CMKs you have no control over. Customer managed ones you can set policies.
+          + You cannot manage key rotation for AWS owned CMKs. 
+          + The key rotation strategy for an AWS owned CMK is determined by the AWS service that creates and manages the CMK.
         + Imported CMKs can be deleted immediately and can have an expiry time.
         + 1000 CMKs per region
         + Keys are region-specific. For a [multi-region solution](https://aws.amazon.com/blogs/security/how-to-use-the-new-aws-encryption-sdk-to-simplify-data-encryption-and-improve-application-availability/), encrypt a single data key under CMKs in different regions.
-        + Customer controlled CMKs can be enabled/disabled
+        + Customer controlled CMKs can be enabled/disabled.
+        + DEFAULT: Automatic key rotation is disabled by default on customer-managed CMKs.
         + Automatic annual key rotation can be enabled for customer controlled keys that don't use imported key material.
+        + CMK’s older cryptographic material in perpetuity, so it can still be used to decrypt.
+        + KMS keeps key material used in encryption, until user DELETES it
+        + DEFAULT: AWS managed CMKs as AWS automatically rotates the keys every three years
+          +  you can specify 1 year rotation (user has to configure this - NOT DEFAULT)
+        + Asymmetric CMKs do not support automatic key rotation
     * Custom key store
         + Uses CloudHSM
         + Can't import or automatically rotate keys - otherwise the same management as normal key stores
         + Only for customer managed CMKs
         + You're responsible for availability
-        + Manual rotation: create key and remap key alias
+        + CMKs in custom key stores DO NOT support automatic key rotation
     * CloudHSM
         + Single tenant 140-2 level 3 HSM - compliance
         + CloudHSMs appear in a VPC
