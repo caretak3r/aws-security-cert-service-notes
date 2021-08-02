@@ -6,8 +6,6 @@ These are the notes I created whilst studying for the [AWS Certified Security - 
 I don't plan to actively maintain this document as AWS evolves - reader beware, the rate of change at AWS is high! I would like to correct any errors though - please do raise an issue. I'll also happily accept pull requests if you find yourself using it and wish to bring it up to date, or fix errors, or otherwise enhance it in any way.
 
 Final caveat: this doesn't teach you how to be good at AWS security. See my blog post on [what I think the Security Speciality certification means](https://mykter.com/2019/05/04/aws-security-certification), and hence what this document aims to cover.
-
-If you found this useful please [let me know](https://twitter.com/michael_macnair)!
 ---
 
 # Services
@@ -786,6 +784,15 @@ These sound like they should be in scope, but I suspect they're not as they're v
         + `arn:aws:ec2:<region>:<account>:route-table/route-table-id`
         + `arn:aws:ec2:<region>:<account>:security-group/security-group-id`
         + `arn:aws:ec2:<region>:<account>:vpc/vpc-id` and `ec2:Tenancy`
+    * DNS
+        + enableDnsHostnames - only works if `enableDNSSupport` is also enabled
+        + enableDnsSupport
+        + If both are `true`:
+            + instances with public-ips get a public DNS hostname
+            + Amazon's DNS can resolve private DNS hostnames
+        + If **either or both** are `false`:
+            + instances with public-ips don't get a public DNS hostname
+            + Amazon's DNS can't resolve private DNS hostnames
     * Network interfaces
         + Has one or more IP addresses, a MAC address, one or more security groups, 
         + Can be moved between EC2 instances
