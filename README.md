@@ -306,6 +306,10 @@ Security service links are to their FAQ pages, as a useful source of information
             }```
         + Condition keys include `secretsmanager:ResourceTag/<tagname>`, `secretsmanager:VersionStage`
         + Configuring rotation requires creating and assigning a role to a Lambda function, which needs e.g. IAMFullAccess
+    * injecting sensitive secrets into ECS tasks
+
+        ![injecting sensitive secrets into ECS tasks](.images/2021-08-03-09-08-51.png)
+
 
 * [Security hub](https://aws.amazon.com/security-hub/faqs/)
     + Regional - findings don't cross regions
