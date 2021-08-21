@@ -5,7 +5,12 @@ These are the notes I created whilst studying for the [AWS Certified Security - 
 
 I don't plan to actively maintain this document as AWS evolves - reader beware, the rate of change at AWS is high! I would like to correct any errors though - please do raise an issue. I'll also happily accept pull requests if you find yourself using it and wish to bring it up to date, or fix errors, or otherwise enhance it in any way.
 
-Final caveat: this doesn't teach you how to be good at AWS security. See my blog post on [what I think the Security Speciality certification means](https://mykter.com/2019/05/04/aws-security-certification), and hence what this document aims to cover.
+##### Final caveat: this doesn't teach you how to be good at AWS security. See my blog post on [what I think the Security Speciality certification means](https://mykter.com/2019/05/04/aws-security-certification), and hence what this document aims to cover.
+---
+
+# Map
+![](.images/AWS_-_Certified_Security_Specialty_.png)
+
 ---
 
 # Services
@@ -284,6 +289,10 @@ Security service links are to their FAQ pages, as a useful source of information
     + Landing Zone account structures, incl logging & security accounts
 
 * [Secrets manager](https://aws.amazon.com/secrets-manager/faqs/)
+
+    Overview of capabilities:
+    ![Overview of capabilities:](.images/2021-08-14-15-54-20.png)
+
     + Also see: Systems Manager Parameter Store - no rotation features, but free.
     + Automatic rotation for AWS RDS, DocumentDB, Redshift
     + Lambda functions to rotate other types
@@ -303,7 +312,8 @@ Security service links are to their FAQ pages, as a useful source of information
                         "secretsmanager:VersionStage" : "AWSCURRENT" 
                     } 
                 }
-            }```
+            }
+            ```
         + Condition keys include `secretsmanager:ResourceTag/<tagname>`, `secretsmanager:VersionStage`
         + Configuring rotation requires creating and assigning a role to a Lambda function, which needs e.g. IAMFullAccess
     * injecting sensitive secrets into ECS tasks
@@ -971,3 +981,23 @@ These sound like they should be in scope, but I suspect they're not as they're v
     + iSCSI front end to Glacier/S3 - tape gateway / volume gateway
     + Encrypted in transit and at rest. By default uses SSE-S3, can configure to use SSE-KMS.
     + iSCSI has its own authentication model (CHAP)
+
+---
+
+# Interesting Reads
+
+
+#### Defending against an adversary exploiting AWS access keys by accessing the AWS EC2 metadata service via a SSRF vulnerability.
+
+- https://blog.appsecco.com/an-ssrf-privileged-aws-keys-and-the-capital-one-breach-4c3c2cded3af
+
+![](.images/2021-08-21-10-45-17.png)
+
+
+#### Exploiting serverless functions in the cloud.
+<>
+
+
+---
+
+# References
