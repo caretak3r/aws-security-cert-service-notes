@@ -231,14 +231,20 @@ This guide was forked and updated for the 2021-2022 exam.
         + AWS managed CMKs you have no control over. Customer managed ones you can set policies.
           + You cannot manage key rotation for AWS owned CMKs. 
           + The key rotation strategy for an AWS owned CMK is determined by the AWS service that creates and manages the CMK.
-        + Imported CMKs can be deleted immediately and can have an expiry time.
+        + Imported CMKs (key material)
+            + Automatic annual key rotation CAN be enabled for customer controlled keys that don't use imported key material.
+            + CMK’s older cryptographic material in perpetuity, so it can still be used to decrypt
+                + if key material is deleted, the `data_key` is NOT immediately deleted
+            + KMS keeps key material used in encryption, until user DELETES it
+            + If DELETED: key_state -> PENDING IMPORT
+                + if you want to use this CMK again, re-import the original key material
+                + you CANNOT import this into another CMK, won't work
+           + expiration times can be configured (AWS KMS deletes the key material and key is unusable)
+           + key material can be DELETED on-demand (immediately) 
         + 1000 CMKs per region
         + Keys are region-specific. For a [multi-region solution](https://aws.amazon.com/blogs/security/how-to-use-the-new-aws-encryption-sdk-to-simplify-data-encryption-and-improve-application-availability/), encrypt a single data key under CMKs in different regions.
         + Customer controlled CMKs can be enabled/disabled.
         + DEFAULT: Automatic key rotation is disabled by default on customer-managed CMKs.
-        + Automatic annual key rotation can be enabled for customer controlled keys that don't use imported key material.
-        + CMK’s older cryptographic material in perpetuity, so it can still be used to decrypt.
-        + KMS keeps key material used in encryption, until user DELETES it
         + DEFAULT: AWS managed CMKs as AWS automatically rotates the keys every three years
           +  you can specify 1 year rotation (user has to configure this - NOT DEFAULT)
         + Asymmetric CMKs do not support automatic key rotation
