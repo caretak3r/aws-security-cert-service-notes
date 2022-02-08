@@ -1,16 +1,32 @@
-# AWS Service Security Notes
-
-
 An all-in-one-place collection of security information about all of the core AWS services.
 
 ---
+- [1. Map](#1-map)
+- [2. Services](#2-services)
+  - [2.1. Security](#21-security)
+  - [2.2. Analytics](#22-analytics)
+  - [2.3. Application Integration](#23-application-integration)
+  - [2.4. Compute](#24-compute)
+  - [2.5. Customer Engagement](#25-customer-engagement)
+  - [2.6. Database](#26-database)
+  - [2.7. Developer tools](#27-developer-tools)
+  - [2.8. End User Computing](#28-end-user-computing)
+  - [2.9. Internet of Things](#29-internet-of-things)
+  - [2.10. Management and Governance](#210-management-and-governance)
+  - [2.11. Mobile](#211-mobile)
+  - [2.12. Networking & Content Delivery](#212-networking--content-delivery)
+  - [2.13. Storage](#213-storage)
+- [3. Interesting Reads](#3-interesting-reads)
+- [4. References](#4-references)
 
-# Map
+
+---
+# 1. Map
 ![](.images/AWS_-_Certified_Security_Specialty_.png)
 
 ---
 
-# Services
+# 2. Services
 A complete list of the AWS security services, and selected additional AWS services of relevance to security (in particular, the security specialist certification). Taken from the AWS product list.
 
 Particularly important services from an exam perspective are in bold.
@@ -21,7 +37,7 @@ This guide was forked and updated for the 2021-2022 exam.
 
 ---
 
-## Security
+## 2.1. Security
 
 * [Artifact](https://aws.amazon.com/artifact/faq/)
     + Generic AWS compliance docs
@@ -378,7 +394,7 @@ This guide was forked and updated for the 2021-2022 exam.
     + Associate Web ACLs with CloudFront, ALB, and API Gateway instances which will then proxy requests via WAF and act on result
     + Also see Firewall Manager and Shield (Advanced)
 
-## Analytics
+## 2.2. Analytics
 (mostly of interest for their application to logs)
 
 * [Athena](https://aws.amazon.com/athena/faqs/)
@@ -415,7 +431,7 @@ This guide was forked and updated for the 2021-2022 exam.
 
 * Redshift (see Database section)
 
-## Application Integration
+## 2.3. Application Integration
 
 * [SNS](https://aws.amazon.com/sns/)
     + Pub/sub.
@@ -431,7 +447,7 @@ This guide was forked and updated for the 2021-2022 exam.
     + Can trigger Lambda functions on message receipt
     + Uses KMS for optional encryption
 
-## Compute
+## 2.4. Compute
 
 * [**EC2**](https://aws.amazon.com/ec2/)
     * AMIs
@@ -517,25 +533,25 @@ This guide was forked and updated for the 2021-2022 exam.
     * (Classic)
     + Logs to S3
 
-## Customer Engagement
+## 2.5. Customer Engagement
 
 * [Simple Email Service (SES)](https://aws.amazon.com/ses/)
     + potentially incident notification, but SNS probably more appropriate
     + Can receive mail, which can be encrypted using a KMS protected key. SDK available to support decryption.
     + TLS API or TLS SMTP connection (port 587), also supports STARTLS and DKIM, and can work with SPF and DMARC
 
-## Database
+## 2.6. Database
 
 A comparison and summary of some of the security aspects of the various database offerings:
 
-| **Database** | **Transport encryption**                                                               | **Encryption at rest**                           | **Audit**                                            | **DB Authentication**                                                                                         | **DB Authorization**                                                         |
-|--------------|----------------------------------------------------------------------------------------|--------------------------------------------------|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| RDS          | Rooted at global RDS certs, configuration is per-engine <br>[docs][rds-tls]            | KMS; TDE w/ SQL Server and Oracle - RDS managed key (used to be CloudHSM Classic)| per-engine log files | per engine user accounts - SQL                                                                              | per engine - SQL                                                             |
-| DynamoDB     | Standard AWS HTTPS endpoint                                                            | KMS                                              | CloudTrail, excl. Get/Put <br>[docs][dynamodb-audit] | IAM only. Cognito possible. <br>[docs][dynamodb-cognito]                                                      | IAM identity policies - resources & condition keys <br>[docs][dynamodb-auth] |
-| Redshift     | ACM managed certificate, redshift specific root <br>[docs][redshift-tls]               | KMS; CloudHSM Classic                            | S3 <br>[docs][redshift-audit]                        | DB user accounts - SQL; IAM with custom drivers <br>[docs][redshift-auth]                                     | SQL                                                                          |
-| Neptune      | Publicly trusted Amazon root; mandated for some regions <br>[docs][neptune-tls]        | KMS                                              | Console <br>[docs][neptune-audit]                    | User accounts; or a limited IAM identity policy mechanism + request signing <br>[docs][neptune-auth]          | Engine-specific; or broad access if using IAM                                |
-| Aurora       | Rooted at global RDS certs, configuration as per mysql/postgres <br>[docs][aurora-tls] | KMS                                              | mysql -> CloudWatch Logs <br>[docs][aurora-audit]    | User accounts; or an IAM authenticated API to obtain short lived passwords to connect <br>[docs][aurora-auth] | mysql/postgres - SQL                                                         |
-| DocumentDB   | Rooted at global RDS certs, configuration as per MongoDB <br>[docs][documentdb-tls]    | KMS                                              | CloudWatch Logs <br>[docs][documentdb-audit]         | MongoDB user accounts                                                                                         | MongoDB standard                                                             |
+| **Database** | **Transport encryption**                                                               | **Encryption at rest**                                                            | **Audit**                                            | **DB Authentication**                                                                                         | **DB Authorization**                                                         |
+| ------------ | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| RDS          | Rooted at global RDS certs, configuration is per-engine <br>[docs][rds-tls]            | KMS; TDE w/ SQL Server and Oracle - RDS managed key (used to be CloudHSM Classic) | per-engine log files                                 | per engine user accounts - SQL                                                                                | per engine - SQL                                                             |
+| DynamoDB     | Standard AWS HTTPS endpoint                                                            | KMS                                                                               | CloudTrail, excl. Get/Put <br>[docs][dynamodb-audit] | IAM only. Cognito possible. <br>[docs][dynamodb-cognito]                                                      | IAM identity policies - resources & condition keys <br>[docs][dynamodb-auth] |
+| Redshift     | ACM managed certificate, redshift specific root <br>[docs][redshift-tls]               | KMS; CloudHSM Classic                                                             | S3 <br>[docs][redshift-audit]                        | DB user accounts - SQL; IAM with custom drivers <br>[docs][redshift-auth]                                     | SQL                                                                          |
+| Neptune      | Publicly trusted Amazon root; mandated for some regions <br>[docs][neptune-tls]        | KMS                                                                               | Console <br>[docs][neptune-audit]                    | User accounts; or a limited IAM identity policy mechanism + request signing <br>[docs][neptune-auth]          | Engine-specific; or broad access if using IAM                                |
+| Aurora       | Rooted at global RDS certs, configuration as per mysql/postgres <br>[docs][aurora-tls] | KMS                                                                               | mysql -> CloudWatch Logs <br>[docs][aurora-audit]    | User accounts; or an IAM authenticated API to obtain short lived passwords to connect <br>[docs][aurora-auth] | mysql/postgres - SQL                                                         |
+| DocumentDB   | Rooted at global RDS certs, configuration as per MongoDB <br>[docs][documentdb-tls]    | KMS                                                                               | CloudWatch Logs <br>[docs][documentdb-audit]         | MongoDB user accounts                                                                                         | MongoDB standard                                                             |
 
 [rds-tls]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html
 [dynamodb-audit]: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/logging-using-cloudtrail.html
@@ -601,7 +617,7 @@ A comparison and summary of some of the security aspects of the various database
     + arns follow the RDS format
     + Auditing can be enabled to send events to CloudWatch Logs. Categories: connection, data definition language (DDL), user management, and authorization
 
-## Developer tools
+## 2.7. Developer tools
 
 * [Code Pipeline](https://aws.amazon.com/codepipeline/)
     + Resource-level permissions for pipelines, and their stages and actions.
@@ -611,7 +627,7 @@ A comparison and summary of some of the security aspects of the various database
     + Trigger from, e.g.: CloudWatch Events (many options, e.g. S3 bucket upload, schedule), webhooks (e.g. github), manual
     + Deploy to, e.g.: CloudFormation, S3, ECS, Service Catalog
 
-## End User Computing
+## 2.8. End User Computing
 
 * [WorkSpaces](https://aws.amazon.com/workspaces/)
     + Supports EBS volume encryption for both root and user volumes
@@ -621,13 +637,13 @@ A comparison and summary of some of the security aspects of the various database
     + WorkSpace network interfaces are associated with a standard VPC security group
     + Has some form of MFA support
 
-## Internet of Things
+## 2.9. Internet of Things
 These sound like they should be in scope, but I suspect they're not as they're very niche.
 
 * IoT Device Defender
 * IoT Device Management
 
-## Management and Governance
+## 2.10. Management and Governance
 
 * [CloudFormation](https://aws.amazon.com/cloudformation/)
     * Stacks
@@ -749,11 +765,11 @@ These sound like they should be in scope, but I suspect they're not as they're v
 
 * Snow Family (see storage)
 
-## Mobile
+## 2.11. Mobile
 
 * API Gateway (see network & content delivery)
 
-## Networking & Content Delivery
+## 2.12. Networking & Content Delivery
 
 * [API Gateway](https://aws.amazon.com/api-gateway/)
     + Logs to CloudWatch
@@ -901,7 +917,7 @@ These sound like they should be in scope, but I suspect they're not as they're v
         + Stateful - responses are always allowed
         + Can reference SGs in peered VPCs.
 
-## Storage
+## 2.13. Storage
 
 * [**S3**](https://aws.amazon.com/s3/)
     * Monitoring
@@ -991,20 +1007,20 @@ These sound like they should be in scope, but I suspect they're not as they're v
 
 ---
 
-# Interesting Reads
+# 3. Interesting Reads
 
 
-#### Defending against an adversary exploiting AWS access keys by accessing the AWS EC2 metadata service via a SSRF vulnerability.
+1. Defending against an adversary exploiting AWS access keys by accessing the AWS EC2 metadata service via a SSRF vulnerability.
 
 - https://blog.appsecco.com/an-ssrf-privileged-aws-keys-and-the-capital-one-breach-4c3c2cded3af
 
 ![](.images/2021-08-21-10-45-17.png)
 
 
-#### Exploiting serverless functions in the cloud.
+2. Exploiting serverless functions in the cloud.
 <>
 
 
 ---
 
-# References
+# 4. References
