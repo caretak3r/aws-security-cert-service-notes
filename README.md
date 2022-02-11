@@ -240,6 +240,18 @@ This guide was forked and updated for the 2021-2022 exam.
         + Grant tokens: passed back when creating a grant, allows grantees to use the grant even before it has fully propagated. Not secret, no security impact, just practical.
     + Key usage -> CloudTrail
     + AWS services use wrapped data keys with KMS - 'envelope encryption'
+      + `GenerateRandom`
+        + returns a random byte string that is cryptographically secure
+      + `GenerateDataKeyWithoutPlaintext`
+        + generates unique data key
+        + data key is encrypted with CMK
+        + identical to `GenerateDataKey` but returns ONLY the encrypted copy of the data key
+      + `GenerateDataKey`
+        + returns both the encrypted and unencrypted data key
+        + actual encryption of data happens later (not real-time)
+
+        ![](.images/2022-02-11-08-48-07.png)
+
     + APIs expose raw encrypt/decrypt operations, <4kb
     * CMKs
         + AES-256
