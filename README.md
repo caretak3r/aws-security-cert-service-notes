@@ -279,8 +279,12 @@ This guide was forked and updated for the 2021-2022 exam.
     + AES-128 or AES-256 data keys
     + Crypto operations accept an optional _encryption context_, which is used as additional authenticated data (AAD) in the operation. If differs then decryption fails. Included in CloudTrail logs. Example used by S3:
         ```json
-        "encryptionContext": {
-            "aws:s3:arn": "arn:aws:s3:::bucket_name/file_name"
+        "encryptionContext": 
+        {
+            "aws:s3:arn": "arn:aws:s3:::bucket_name/file_name",
+            "kms:EncryptionContext:AppName": "ExampleApp",
+            "kms:EncryptionContext:Version": "1.0.24",
+            "kms:EncryptionContext:EmailAddress": "user@email.com"
         },
         ```
 
