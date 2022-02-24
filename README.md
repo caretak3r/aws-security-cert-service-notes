@@ -661,6 +661,26 @@ These sound like they should be in scope, but I suspect they're not as they're v
 
 ## 2.10. Management and Governance
 
+* [Penetration Testing](https://aws.amazon.com/security/penetration-testing/)
+  * Some service require permissions to actively penetration test again
+    * Permitted (8)
+        + EC2, NAT Gateways, ELBs
+        + RDS
+        + Aurora
+        + Cloudfront
+        + API Gateways
+        + Lambda and Lambda Edge locations
+        + Lightsail
+        + Elastic Beanstalk
+    * Prohibited
+        + DNS zone walking of Route53
+        + Denial of Service (DoS), DDoS or Simulated DoS
+        + Port flooding
+        + Protocol flooding
+        + Request flooding (login request, API request flooding)
+        + S3 (dns zone walking)
+        + Kinesis, etc
+
 * [CloudFormation](https://aws.amazon.com/cloudformation/)
     * Stacks
         + You can assign a service role, if you can iam:PassRole it. Anyone who can operate on that stack can leverage that role's permissions (even if they can't run it - they could modify it then someone else runs it!).
