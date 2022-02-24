@@ -1033,8 +1033,15 @@ These sound like they should be in scope, but I suspect they're not as they're v
 ![](.images/2021-08-21-10-45-17.png)
 
 
+
 2. Exploiting serverless functions in the cloud.
 <>
+
+
+
+3. AWS DDoS Whitepaper
+
+- https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf
 
 
 ---
