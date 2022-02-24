@@ -120,6 +120,24 @@ This guide was forked and updated for the 2021-2022 exam.
     + Findings -> GuardDuty console (for 90 days) + CloudWatch Events. Findings in JSON format similar to Macie & Inspector
     + Regional. Can aggregate via CloudWatch Events to push to a central store
     + CloudWatch events -> SNS topic (-> email) / Lambda (->S3)
+    + Can be setup as a master-member account
+      + AWS accounts individually invited to join
+      + AWS accounts in Organizations rolled up into a single master-member account
+    + Format for various findings
+      + `ThreatPurpose:ResourceTypeAffected/ThreatFamilyName.DetectionMechanism!Artifact`
+        + `ThreatPurpose` - purpose of threat
+          + Backdoor, Behavior, CredentialAccess, Cryptocurrency, DefenseEvasion, Discovery, Exfiltration
+          + Impact - patterns suggesting adversary is attempting to manipulate, interrupt, or destroy 
+          + InitialAccess
+          + Pentest, Persistence, Policy - goes against best practices
+          + Recon - patterns showing port scanning, etc
+          + Stealth, Trojan, UnauthorizedAccess
+        + `ResourceTypeAffected`
+        + `ThreatFamilyName`
+        + `DetectionMechanism`
+          + `.Custom`
+          + `.Reputation`
+        + `Artifact`
 
 * [**IAM**](https://aws.amazon.com/iam/faqs/)
     * Users, Groups, Roles
