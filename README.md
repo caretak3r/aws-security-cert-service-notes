@@ -17,7 +17,6 @@ An all-in-one-place collection of security information about all of the core AWS
   - [2.12. Networking & Content Delivery](#212-networking--content-delivery)
   - [2.13. Storage](#213-storage)
 - [3. Interesting Reads](#3-interesting-reads)
-- [4. References](#4-references)
 
 
 ---
@@ -1065,23 +1064,24 @@ These sound like they should be in scope, but I suspect they're not as they're v
 
 
 1. Defending against an adversary exploiting AWS access keys by accessing the AWS EC2 metadata service via a SSRF vulnerability.
+   - https://blog.appsecco.com/an-ssrf-privileged-aws-keys-and-the-capital-one-breach-4c3c2cded3af
 
-- https://blog.appsecco.com/an-ssrf-privileged-aws-keys-and-the-capital-one-breach-4c3c2cded3af
+        ![](.images/2021-08-21-10-45-17.png)
 
-![](.images/2021-08-21-10-45-17.png)
-
-
-
+---
 2. Exploiting serverless functions in the cloud.
-<>
 
-
-
-3. AWS DDoS Whitepaper
-
-- https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf
+    Spock: Exploiting Serverless Functions for SLO and Cost Aware Resource Procurement in Public Cloud
+   - http://www.cse.psu.edu/~jqg5490/assets/files/cloud-spock.pdf
 
 
 ---
+3. AWS DDoS Whitepaper
+   - https://d1.awsstatic.com/whitepapers/Security/DDoS_White_Paper.pdf
 
-# 4. References
+
+---
+4. EBS Encryption Best Practices
+   - https://aws.amazon.com/blogs/compute/must-know-best-practices-for-amazon-ebs-encryption/
+
+---
