@@ -1,6 +1,26 @@
+# Overview
+
 An all-in-one-place collection of security information about all of the core AWS services.
 
+This guide was forked/amended from the original and updated for the 2021-2022 exam. Scope is covered in the [AWS Certified Security – Specialty (SCS-C01) Exam Guide](https://d1.awsstatic.com/training-and-certification/docs-security-spec/AWS-Certified-Security-Specialty_Exam-Guide.pdf)
+
 ---
+## Tips
+
+1. The direction of trust is the opposite of the direction of access.
+    - e.g "We want users in the on-premises AD to be able to access resources in AWS." 
+
+
+2. Take note of words like "most secure", or "least cost", or "easiest way to implement", or "fastest" in the given questions.
+
+
+3. Understanding how to troubleshoot logging issues is important.
+    - e.g Even for services not covered under the scope like, EKS and Opensearch (Elasticsearch)
+
+
+---
+- [Overview](#overview)
+  - [Tips](#tips)
 - [1. Map](#1-map)
 - [2. Services](#2-services)
   - [2.1. Security](#21-security)
@@ -32,9 +52,9 @@ Particularly important services from an exam perspective are in bold.
 
 Security service links are to their FAQ pages, as a useful source of information on particular use cases and constraints that might be examined. Other service links are to their main product pages, but the FAQ pages often have good information including a security section too.
 
-This guide was forked and updated for the 2021-2022 exam.
 
 ---
+
 
 ## 2.1. Security
 
