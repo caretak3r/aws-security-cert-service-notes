@@ -62,8 +62,11 @@ Security service links are to their FAQ pages, as a useful source of information
     + Generic AWS compliance docs
 
 * [Certificate Manager](https://aws.amazon.com/certificate-manager/faqs/)
-    + Issuance can take a few hours
-    + Email or DNS validation (CloudFormation only supports email validation)
+    + Email or DNS validation
+    + `AWS::CertificateManager::Certificate` resource can handle domain validation automatically if all three of the following are true:
+        + the certificate domain is hosted in Amazon Route 53
+        + the domain resides in your AWS account
+        + you are using DNS validation.
     + Validates DNS CA Authorization records first
     + Certs are region-locked, unless CloudFront is used (w/ Virginia)
     + Private keys are KMS protected - CloudTrail shows services using KMS to get the keys
