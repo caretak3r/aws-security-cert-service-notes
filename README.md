@@ -367,7 +367,7 @@ Security service links are to their FAQ pages, as a useful source of information
         + CloudTrail can create an [organizational trail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html), for all events in all member accounts. Member accounts can't modify it.
     + Landing Zone account structures, incl logging & security accounts
 
-* [Secrets manager](https://aws.amazon.com/secrets-manager/faqs/)
+* [**Secrets manager**](https://aws.amazon.com/secrets-manager/faqs/)
 
     Overview of capabilities:
     ![Overview of capabilities:](.images/2021-08-14-15-54-20.png)
@@ -400,13 +400,13 @@ Security service links are to their FAQ pages, as a useful source of information
         ![injecting sensitive secrets into ECS tasks](.images/2021-08-03-09-08-51.png)
 
 
-* [Security hub](https://aws.amazon.com/security-hub/faqs/)
+* [**Security hub**](https://aws.amazon.com/security-hub/faqs/)
     + Regional - findings don't cross regions
     + Multi-account support
     + Findings from Guard Duty, Inspector, Macie, third party, and self-generated against CIS standards
     + Insights: collections / filters of findings
 
-* [Shield](https://aws.amazon.com/shield/faqs/)
+* [**Shield**](https://aws.amazon.com/shield/faqs/)
     + Standard - integrated into existing services. Not a stand-alone service. Netflow monitoring & TCP/UDP protection.
     * Advanced
         + Layer 7 protection, WAF rule creation
@@ -415,7 +415,7 @@ Security service links are to their FAQ pages, as a useful source of information
         + Global threat environment dashboard, see overall stats for the whole of AWS
         + AWS DDoS team support
 
-* [SSO](https://aws.amazon.com/single-sign-on/faqs/)
+* [**SSO**](https://aws.amazon.com/single-sign-on/faqs/)
     + Free
     + Primary use case: manage multi-account access with Organizations.
     + Additional use case: SSO to other applications via SAML 2 (custom or a bunch of built-in integrations)
@@ -434,7 +434,7 @@ Security service links are to their FAQ pages, as a useful source of information
     + No API!
     + For CLI access, SSO user portal gives you temporary creds for the Roles you have access to
 
-* [WAF](https://aws.amazon.com/waf/faqs/)
+* [**WAF**](https://aws.amazon.com/waf/faqs/)
     * Conditions
         + Inspect: IP addresses (+ region mapping), HTTP headers, HTTP body, URI strings
         + Match against: SQL injection, cross-site scripting, regex, strings, IP ranges, regions, sizes.
@@ -453,7 +453,7 @@ Security service links are to their FAQ pages, as a useful source of information
 ## 2.2. Analytics
 (mostly of interest for their application to logs)
 
-* [Athena](https://aws.amazon.com/athena/faqs/)
+* [**Athena**](https://aws.amazon.com/athena/faqs/)
     + SQL queries over data in S3 after you define a schema. Including (optionally compressed) JSON & CSV
     + Integrates with Glue's Data Catalog - a more featureful version of Athena's built in Data Catalog which supports fine-grained permissions.
     + Charged per query (volume of data scanned)
@@ -462,7 +462,7 @@ Security service links are to their FAQ pages, as a useful source of information
     + Athena is better than Redshift for querying smaller datasets without pre-processing.
     + CloudTrail can automatically create Athena tables for you, and AWS are keen to push Athena as an ideal CloudTrail analysis tool. Other good candidates: VPC flow logs (if sent to S3), CloudFront, ELB.
 
-* [Elasticsearch service](https://aws.amazon.com/elasticsearch-service/faqs/)
+* [**Elasticsearch service**](https://aws.amazon.com/elasticsearch-service/faqs/)
     + IAM auth for management, ES APIs, and resource-based policies down to index level
     + Resource based policies can allow specific IP addresses
     + Kibana auth via Cognito
@@ -470,13 +470,14 @@ Security service links are to their FAQ pages, as a useful source of information
     + Ingress via Kinesis Firehose, Logstash, or ES's index/bulk APIs
     + KMS integration for data at rest
 
-* [Glue](https://aws.amazon.com/glue/faqs/)
+* [**Glue**](https://aws.amazon.com/glue/faqs/)
     + "Select a data source and data target. AWS Glue will generate ETL code in Scala or Python to Extract data from the source, Transform the data to match the target schema, and Load it into the target. "
     + Sources: S3, Redshift, and RDS and other databases
     + Loading into other services for querying (e.g. Athena, Redshift)
 
-* [Kinesis](https://aws.amazon.com/kinesis/)
+* [**Kinesis**](https://aws.amazon.com/kinesis/)
     + Ingest and analyse various data sources, notably logs
+    + Almost always used for real-time processing
     * [Data Firehose](https://aws.amazon.com/kinesis/data-firehose/faqs/)
         + "capture, transform, and load streaming data into Amazon S3, Amazon Redshift, Amazon Elasticsearch Service, and Splunk"
         + Create delivery stream, with optional Lambda function to transform the data
@@ -489,13 +490,13 @@ Security service links are to their FAQ pages, as a useful source of information
 
 ## 2.3. Application Integration
 
-* [SNS](https://aws.amazon.com/sns/)
+* [**SNS**](https://aws.amazon.com/sns/)
     + Pub/sub.
     + Sources include: SNS API, Lambda, ELB, S3, databases, Code*, CloudWatch, Inspector, and others
     + Destinations: Lambda, SQS, webhooks, SMS, email 
     + Subscribers have to validate - a challenge message is first sent
 
-* [SQS](https://aws.amazon.com/sqs/)
+* [**SQS**](https://aws.amazon.com/sqs/)
     + Polling, vs SNS's push mechanism
     + Standard queues might reorder messages or deliver them multiple times
     + Has its own resource-based security policy, that predates IAM? Looks similar to IAM policies. Only resource is a queue.
@@ -518,12 +519,12 @@ Security service links are to their FAQ pages, as a useful source of information
     + Instance store - hard disk attached to the instance; reset when the instance is stopped. Not encrypted - could use host software disk encryption for a temporary data partition.
     + Instance profile - credentials for a role available to the instance (see IAM section)
 
-* [Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/)
+* [**Elastic Container Registry (ECR)**](https://aws.amazon.com/ecr/)
     + IAM access control for pulling & pushing images - identity & resource based
     + Repository policies - e.g. to allow other accounts to pull
     + Images encrypted at rest by default with S3 SSE; HTTPS access
 
-* [Elastic Container Service (ECS)](https://aws.amazon.com/ecs/)
+* [**Elastic Container Service (ECS)**](https://aws.amazon.com/ecs/)
     + Tasks: set of containers that are placed together.
     + Containers run on customer-controlled EC2 instances in a VPC, or are Fargate managed.
     + Networking options:
@@ -537,12 +538,12 @@ Security service links are to their FAQ pages, as a useful source of information
         + Must use awsvpc network mode, CloudWatch logs
         + Uses [Firecracker](https://firecracker-microvm.github.io/) under the hood (definitely not in scope of the exam, but an interesting topic!)
 
-* [Lightsail](https://aws.amazon.com/lightsail/)
+* [**Lightsail**](https://aws.amazon.com/lightsail/)
     + Like an entirely separate cloud offering within AWS, with extremely limited features. DigitalOcean competitor.
     + No VPC - separate management of exposed ports
     + Hopefully not in the exam :)
 
-* [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/)
+* [**Elastic Beanstalk**](https://aws.amazon.com/elasticbeanstalk/)
     + Management wrapper around EC2, S3, EBS, RDS
     + Publicly available by default - configure to use a VPC to limit access
     + Beanstalk service role to manage other services. Instance profile - role used by instances to get the app, write logs, etc
@@ -738,6 +739,7 @@ These sound like they should be in scope, but I suspect they're not as they're v
         + CloudWatch Agent can be installed on a host (e.g. via SSM) to push logs to CloudWatch Logs. [Troubleshooting info](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/troubleshooting-CloudWatch-Agent.html).
         + Log group: a collection of log streams that share the same retention, monitoring, and access control settings
         + Log stream: a sequence of log events that share the same source
+            + Ensure no duplicate `[logstream]` in configurations
         + Logs last forever unless you set a retention period on a group
         + Subscription filters: define a filter pattern that matches events in a particular log group, send them to Kinesis Data Firehose stream, Kinesis stream, or a Lambda function.
         + Can export log groups (in a particular time range) to S3. Not real time.
@@ -760,6 +762,10 @@ These sound like they should be in scope, but I suspect they're not as they're v
     + eventSource: what service produced the event.
     + Can enable SNS notifications for when a new log _file_ is produced
     + Can set up CloudWatch metric filters for certain events to trigger a CloudWatch Alarm
+    + Log integrity validation - a hash is created for every log file delivered 
+        + also creates and delivers a file that references the log files for the last hour and contains a hash of each
+        + log digest files are signed using public/private keys
+            + use the public key to validate the digest file
 
 * [**Config**](https://aws.amazon.com/config/)
     + Resource inventory, configuration history, and configuration change notifications
@@ -769,6 +775,8 @@ These sound like they should be in scope, but I suspect they're not as they're v
     + Configuration changes sent to 'delivery channel' - S3 bucket & SNS topic
     + Console provides a timeline view of configuration changes
     + AWSConfigRole is the managed audit role; also needs permisisons for the SNS topic & S3 bucket.
+    + `approved-amis-by-id` to report non-compliant AMIs being used (send CloudWatch alarm notification)
+    + Trigger SSM Automation Documents based on rules to remediate some resource
     * Rules
         + Continuously evaluate configs against rules
         + Retrospective and non-enforcing
